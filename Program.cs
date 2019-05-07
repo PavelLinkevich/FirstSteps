@@ -6,69 +6,63 @@ using System.Threading.Tasks;
 
 namespace Hello_World
 {
-    class omg
+    class Program
     {
-        static int u;
-        static int p;
-        static int w = 1;
-        static bool a;
+        static bool Thanks = false;
+        static int z=0;
 
         static void Main(string[] args)
         {
-            a = true;
-            while (a == true)
+            
+            while (Thanks == false)
             {
                 string e = Console.ReadLine();
-                if (e == "Спасибо")
+                if (e == "Спасибо" || e == "спасибо")
                 {
                     Console.WriteLine("Пока");
                     Console.ReadKey(true);
-                    a = false;
-                }
-                if (e == "спасибо")
-                {
-                    Console.WriteLine("Пока");
-                    Console.ReadKey(true);
-                    a = false;
+                    Thanks = true;
                 }
                 else
                 {
                     string[] ArrayReadConsole = e.Split(' ');
-                    palindrom(ArrayReadConsole);
+                    Words(ArrayReadConsole);
                 }
             }
         }
 
-        static void palindrom(string[] ArrayReadConsole)
+        static void Words(string[] ArrayReadConsole)
         {
-
-            int LenClov = ArrayReadConsole.Length;   //Измерили колво слов   
-            for (int p = 0; p < LenClov; p++)
+            foreach (var word in ArrayReadConsole)
             {
-                string Clovo = ArrayReadConsole[p];   //Слово отдельный стринг не конст
-                int LenClovo = Clovo.Length; //Узнали длину слова                  
-
-                if (LenClovo % 2 == 1)
-                {
-                    p = 0;
-                }
-                int e4 = LenClovo / 2;
-                for (int t = 0; t < e4; t++)
-                {
-                    p++;
-                    int u = LenClovo - p;
-                    if (Clovo[t] == Clovo[u])
-                    {
-
-                    }
-                    else
-                    {
-                        Console.Write("не ");
-
-                    }
-                }
-                Console.WriteLine("полиндром :" + Clovo);
+                palindrom(word);
             }
+        
         }
-    }
+        static void palindrom(string word)
+        {
+            int LengthWord = word.Length; //Узнали длину слова            
+            int NumberActions = LengthWord / 2; //узнали сколько нам надо раз провести это действие
+            for (int numberActionsTaken = 0; numberActionsTaken < NumberActions; numberActionsTaken++)
+            {
+                z++;
+                int oppositeLetter = LengthWord - z;
+                Console.WriteLine("z =" + z);
+
+                if (word[numberActionsTaken] == word[oppositeLetter])
+                {
+
+                }
+                else
+                {
+                    Console.Write("не ");
+                    break;
+                }
+                Console.WriteLine("numberActionsTaken =" + word[numberActionsTaken]);
+                Console.WriteLine("oppositeLetter =" + word[oppositeLetter]);
+            }
+            Console.WriteLine("полиндром :" + word);
+            z = 0;
+        }
+    }  
 }
