@@ -12,8 +12,7 @@ namespace Hello_World
         static int z=0;
 
         static void Main(string[] args)
-        {
-            
+        {            
             while (Thanks == false)
             {
                 string e = Console.ReadLine();
@@ -47,8 +46,6 @@ namespace Hello_World
             {
                 z++;
                 int oppositeLetter = LengthWord - z;
-                Console.WriteLine("z =" + z);
-
                 if (word[numberActionsTaken] == word[oppositeLetter])
                 {
 
@@ -57,9 +54,7 @@ namespace Hello_World
                 {
                     Console.Write("не ");
                     break;
-                }
-                Console.WriteLine("numberActionsTaken =" + word[numberActionsTaken]);
-                Console.WriteLine("oppositeLetter =" + word[oppositeLetter]);
+                }               
             }
             Console.WriteLine("полиндром :" + word);
             z = 0;
