@@ -8,19 +8,16 @@ namespace Hello_World
 {
     class Program
     {
-        static bool Thanks = false;
-        static int z=0;
-
         static void Main(string[] args)
         {            
-            while (Thanks == false)
+            while (true)
             {
                 string e = Console.ReadLine();
                 if (e == "Спасибо" || e == "спасибо")
                 {
                     Console.WriteLine("Пока");
                     Console.ReadKey(true);
-                    Thanks = true;
+                    return;
                 }
                 else
                 {
@@ -34,30 +31,23 @@ namespace Hello_World
         {
             foreach (var word in ArrayReadConsole)
             {
-                palindrom(word);
+                isPalindrom(word);
             }
         
         }
-        static void palindrom(string word)
+        static bool isPalindrom(string word)
         {
-            int LengthWord = word.Length; //Узнали длину слова            
-            int NumberActions = LengthWord / 2; //узнали сколько нам надо раз провести это действие
-            for (int numberActionsTaken = 0; numberActionsTaken < NumberActions; numberActionsTaken++)
-            {
-                z++;
-                int oppositeLetter = LengthWord - z;
-                if (word[numberActionsTaken] == word[oppositeLetter])
+            int i = 0;       
+            int quantityRepetitions = (word.Length - 1) / 2; //узнали сколько нам надо раз провести это действие
+            for (int leftLetter = 0; leftLetter < quantityRepetitions; leftLetter++,i++)//проводим это действие
+            { 
+                int rightLetter = word.Length - 1 - i;// находим номер этой буквы
+                if (word[leftLetter] != word[rightLetter])
                 {
-
-                }
-                else
-                {
-                    Console.Write("не ");
-                    break;
-                }               
+                    return false;
+                }                   
             }
-            Console.WriteLine("полиндром :" + word);
-            z = 0;
+            return true;            
         }
     }  
 }
