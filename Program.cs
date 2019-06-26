@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 using System.IO;
 
 namespace Hello_World
-{  
+{
     class Program
     {
         static int a;
-        static int b;       
+        static int b;
         static void Main(string[] args) //Пафосна говорит:"Привет"
         {
             Createplayingfield();
-           
+
         }
         static void Createplayingfield()
         {
             Console.WriteLine("Выберите размер поля");
             a = b = int.Parse(Console.ReadLine());
             bool?[,] field = new bool?[a, b];
-            for (int i = 0;i<a;i++)
+            for (int i = 0; i < a; i++)
             {
-                Console.Write(field[i, 0] );
+                Console.Write(field[i, 0]);
                 Console.Write(" /");
                 for (int y = 1; y < a; y++)
                 {
@@ -32,10 +32,27 @@ namespace Hello_World
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("Поле готово");
+            Startthegame();
         }
+        static void Startthegame()
+        {
+            Console.WriteLine("1 или 2 игрока?");
+            int Player = int.Parse(Console.ReadLine());
+            if (Player == 1)
+            {
+                Oneplayer();
+            }
+            else { Twoplayers(); }
+        }
+        static void Oneplayer()
+        {
 
+        }
+        static void Twoplayers()
+        {
 
-
+        }
     }
     class Library
     {
