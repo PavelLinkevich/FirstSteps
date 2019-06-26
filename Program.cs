@@ -6,71 +6,33 @@ using System.Threading.Tasks;
 using System.IO;
 
 namespace Hello_World
-{
+{  
     class Program
-    {       
-        static string Name;
+    {
+        static int a;
+        static int b;       
         static void Main(string[] args) //Пафосна говорит:"Привет"
         {
-            Console.WriteLine("Hello users");
-            Console.ReadKey(true);
-            TitlePage();
-            // Console.ReadKey(true);
-            //Console.WriteLine("The End");
-            
-        }
-        static void CreateLoginAndPassword()
-        {
+            Createplayingfield();
            
-            try
-            {
-                Console.WriteLine("What's your Name?");
-                Name = Console.ReadLine();
-                FileStream file = new FileStream("E:\\new_file_" + Name + ".txt", FileMode.CreateNew);// Name должен быть локальной переменной  
-                Console.WriteLine("What's your password?");
-                StreamWriter writer = new StreamWriter(file);
-                writer.WriteLine(Console.ReadLine());
-                writer.Close();
-                file.Close();
-                Console.WriteLine("Press any key to go back");
-                Console.ReadKey(true);
-                TitlePage();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("This name is already taken");
-                Console.WriteLine("Press any key to go back");
-                Console.ReadKey(true);
-                TitlePage();
-                //Console.WriteLine("Try again");
-                // CreateLoginAndPassword();
-            }
-
         }
-        static void TitlePage()
+        static void Createplayingfield()
         {
-           
-            Console.WriteLine("Зарегестрируйтесь");
-            Console.Write("Пользаватель один:");
-            string Name = Console.ReadLine();
-            Console.WriteLine("Привет " + Name);
-            Console.Write("Пользаватель два:");
-            string Name2 = Console.ReadLine();
-            Console.WriteLine("Привет " + Name2);
-            while (Console.ReadLine() != " good bye")
+            Console.WriteLine("Выберите размер поля");
+            a = b = int.Parse(Console.ReadLine());
+            bool?[,] field = new bool?[a, b];
+            for (int i = 0;i<a;i++)
             {
-                Console.Write(Name + ": ");
-                Console.ReadLine();
-                Console.Write(Name2 + ": ");
-                Console.ReadLine();
-            }   
-
+                Console.Write(field[i, 0] );
+                Console.Write(" ");
+                for (int y = 1; y < a; y++)
+                {
+                    Console.Write(field[i, y]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
         }
-
-
-
-
-
 
 
 
