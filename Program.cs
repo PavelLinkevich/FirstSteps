@@ -24,11 +24,11 @@ namespace Hello_World
             for (int i = 0;i<a;i++)
             {
                 Console.Write(field[i, 0] );
-                Console.Write(" ");
+                Console.Write(" /");
                 for (int y = 1; y < a; y++)
                 {
                     Console.Write(field[i, y]);
-                    Console.Write(" ");
+                    Console.Write(" /");
                 }
                 Console.WriteLine();
             }
