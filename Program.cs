@@ -13,28 +13,35 @@ namespace Hello_World
         static int b;
         static void Main(string[] args) //Пафосна говорит:"Привет"
         {
+            //Createplayingfield();
+            //Move1();
             Createplayingfield();
-
+            Console.ReadKey(true);
         }
         static void Createplayingfield()
         {
-            Console.WriteLine("Выберите размер поля");
-            a = b = int.Parse(Console.ReadLine());
-            bool?[,] field = new bool?[a, b];
-            for (int i = 0; i < a; i++)
-            {
-                Console.Write(field[i, 0]);
-                Console.Write(" /");
-                for (int y = 1; y < a; y++)
-                {
-                    Console.Write(field[i, y]);
-                    Console.Write(" /");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine("Поле готово");
+            Console.WriteLine("Привецтвую вас лUSERы");
+            Console.ReadKey(true);
+            Console.WriteLine("Поле будет три на три");
+            Console.ReadKey(true);
+            //Console.WriteLine("Выберите размер поля");
+            //a = b = int.Parse(Console.ReadLine());
+            // bool?[,] field = new bool?[a, b];
+            //for (int i = 0; i < a; i++)
+            //{
+            //    Console.Write(field[i, 1]);
+            //    Console.Write(" /");
+            //    for (int y = 0; y < a; y++)
+            //    {
+            //        Console.Write(field[i, y]);
+            //        Console.Write(" /");
+            //    }
+            //    Console.WriteLine();
+            //}
+            //Console.WriteLine("Поле готово");
             Startthegame();
         }
+        static char[,] field = new char[3, 3];
         static void Startthegame()
         {
             Console.WriteLine("1 или 2 игрока?");
@@ -43,14 +50,101 @@ namespace Hello_World
             {
                 Oneplayer();
             }
-            else { Twoplayers(); }
+            else { Twoplayers(); }           
         }
         static void Oneplayer()
         {
 
         }
+        static bool Win()
+        {
+            if (field[0, 0] == 'X' && field[0, 1] == 'X' && field[0, 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3 в ряд
+            if (field[1, 0] == 'X' && field[1, 1] == 'X' && field[1, 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[2, 0] == 'X' && field[2, 1] == 'X' && field[2, 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 0] == 'X' && field[1, 0] == 'X' && field[2, 0] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по вертикали
+            if (field[0, 1] == 'X' && field[1, 1] == 'X' && field[2, 1] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 2] == 'X' && field[1, 2] == 'X' && field[2, 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 0] == 'X' && field[1, 1] == 'X' && field[2, 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по диаганали
+            if (field[0, 2] == 'X' && field[1, 1] == 'X' && field[2, 0] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }            
+            return false; 
+        }
+        static bool Win2()
+        {
+            if (field[0, 0] == 'O' && field[0, 1] == 'O' && field[0, 2] == 'O') { Console.WriteLine("Победа 2 игрока"); return true; }
+            if (field[1, 0] == 'O' && field[1, 1] == 'O' && field[1, 2] == 'O') { Console.WriteLine("Победа 2 игрока"); return true; }
+            if (field[2, 0] == 'O' && field[2, 1] == 'O' && field[2, 2] == 'O') { Console.WriteLine("Победа 2 игрока"); return true; }
+            if (field[0, 0] == 'O' && field[1, 0] == 'O' && field[2, 0] == 'O') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 1] == 'O' && field[1, 1] == 'O' && field[2, 1] == 'O') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 2] == 'O' && field[1, 2] == 'O' && field[2, 2] == 'O') { Console.WriteLine("Победа 1 игрока"); return true; }
+            if (field[0, 0] == 'O' && field[1, 1] == 'O' && field[2, 2] == 'O') { Console.WriteLine("Победа 2 игрока"); return true; }
+            if (field[0, 2] == 'O' && field[1, 1] == 'O' && field[2, 0] == 'O') { Console.WriteLine("Победа 2 игрока"); return true; }
+            return false;
+
+        }
         static void Twoplayers()
         {
+            while (Win()== false|| Win2() == false)
+            {
+                Move1();
+                if(Win() != false || Win2() != false)
+                {
+                    break;
+                }
+                Move2();
+            }
+            
+        }
+        
+        static void Move1()//Доработаю
+        {
+            Console.WriteLine("ход 1 игрока");
+            Console.WriteLine("укажите ряд:");
+            int move = int.Parse(Console.ReadLine());
+            Console.WriteLine("укажите столбик:");
+            int move2 = int.Parse(Console.ReadLine());
+            int move3 = move - 1;
+            int move4 = move2 - 1;
+            
+            field[move3, move4] = 'X';
+
+
+                for (int t = 0; t < 3; t++)
+                {
+                    Console.Write(" |");
+
+                    for (int y = 0; y < 3; y++)
+                    {
+                        Console.Write(field[t, y] + "|");
+                    }
+                    Console.WriteLine();
+                }
+            
+
+        }
+        static void Move2()//Доработаю
+        {
+            Console.WriteLine("ход 2 игрока");
+            Console.WriteLine("укажите ряд:");
+            int move = int.Parse(Console.ReadLine());
+            Console.WriteLine("укажите столбик:");
+            int move2 = int.Parse(Console.ReadLine());
+            int move3 = move - 1;
+            int move4 = move2 - 1;
+
+            field[move3, move4] = 'O';
+
+
+            for (int t = 0; t < 3; t++)
+            {
+                Console.Write(" |");
+
+                for (int y = 0; y < 3; y++)
+                {
+                    Console.Write(field[t, y] + "|");
+                }
+                Console.WriteLine();
+            }
+
 
         }
     }
