@@ -86,9 +86,20 @@ namespace Hello_World
                     if (field[i-2, p] == 'X' && field[i-1, p] == 'X' && field[i, p] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по вертикали
                 }
             }
-            for (int p = 2; p < 4; p++)
+
+            for (int i = 2; i < 4; i++)
             {
-                if (field[p - 2, p - 2] == 'X' && field[p - 1, p - 1] == 'X' && field[p, p] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по диаганали
+                for (int p = 2; p < 4; p++)
+                {
+                    if (field[i - 2, p - 2] == 'X' && field[i - 1, p - 1] == 'X' && field[i, p] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по диаганали
+                }
+            }
+            for (int i = 2; i < 4; i++)
+            {
+                for (int p = 2; p < 4; p++)
+                {
+                    if (field[p - 2, i] == 'X' && field[p - 1, i - 1] == 'X' && field[p, i - 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
+                }
             }
             for (int p = 2; p < 4; p++)
             {
