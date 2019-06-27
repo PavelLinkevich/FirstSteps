@@ -13,9 +13,9 @@ namespace Hello_World
         static int b;
         static void Main(string[] args) //Пафосна говорит:"Привет"
         {
-            //Createplayingfield();
+            Createplayingfield();
             //Move1();
-            Twoplayers();
+            //Twoplayers();
             //Createplayingfield();
             //char[,] fild = new char[3, 3];
             //fild[1, 0] = '1';
@@ -33,12 +33,12 @@ namespace Hello_World
         }
         static void Createplayingfield()
         {
-            //Console.WriteLine("Привецтвую вас лUSERы");
-            //Console.ReadKey(true);
+            Console.WriteLine("Привецтвую вас лUSERы");
+            Console.ReadKey(true);
             //Console.WriteLine("Поле будет три на три");
             //Console.ReadKey(true);
-            //Console.WriteLine("Выберите размер поля");
-            //a = b = int.Parse(Console.ReadLine())-1;
+            Console.WriteLine("Выберите размер поля");
+            a = b = int.Parse(Console.ReadLine()) - 1;
             // bool?[,] field = new bool?[a, b];
             //for (int i = 0; i < a; i++)
             //{
@@ -52,58 +52,54 @@ namespace Hello_World
             //    Console.WriteLine();
             //}
             //Console.WriteLine("Поле готово");
-            //Startthegame();
+            Startthegame();
         }
-        static char[,] field = new char[4, 4];
-        //static void Startthegame()
-        //{
-        //    Console.WriteLine("1 или 2 игрока?");
-        //    int Player = int.Parse(Console.ReadLine());
-        //    if (Player == 1)
-        //    {
-        //        Oneplayer();
-        //    }
-        //    else { Twoplayers(); }           
-        //}
-        //static void Oneplayer()
-        //{
+        static char[,] field = new char[a, b];
+        static void Startthegame()
+        {
+            Console.WriteLine("1 или 2 игрока?");
+            int Player = int.Parse(Console.ReadLine());
+            if (Player == 1)
+            {
+                Oneplayer();
+            }
+            else { Twoplayers(); }
+        }
+        static void Oneplayer()
+        {
 
-        //}
+        }
         static bool Win()
         {
 
-            for (int i = 2; i < 4; i++)
+            for (int i = 2; i < a; i++)
             {
-                for (int p = 0; p < 4; p++)
+                for (int p = 0; p < b; p++)
                 {
                     if (field[p, i-2] == 'X' && field[p, i-1] == 'X' && field[p, i] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3 в ряд
                 }
             }
-            for (int i = 2; i < 4; i++)
+            for (int i = 2; i < a; i++)
             {
-                for (int p = 0; p < 4; p++)
+                for (int p = 0; p < b; p++)
                 {
                     if (field[i-2, p] == 'X' && field[i-1, p] == 'X' && field[i, p] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по вертикали
                 }
             }
 
-            for (int i = 2; i < 4; i++)
+            for (int i = 2; i < a; i++)
             {
-                for (int p = 2; p < 4; p++)
+                for (int p = 2; p < b; p++)
                 {
                     if (field[i - 2, p - 2] == 'X' && field[i - 1, p - 1] == 'X' && field[i, p] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }// 3  по диаганали
                 }
             }
-            for (int i = 2; i < 4; i++)
+            for (int i = 2; i < a; i++)
             {
-                for (int p = 2; p < 4; p++)
+                for (int p = 2; p < b; p++)
                 {
                     if (field[p - 2, i] == 'X' && field[p - 1, i - 1] == 'X' && field[p, i - 2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
                 }
-            }
-            for (int p = 2; p < 4; p++)
-            {
-                if (field[p-2, p] == 'X' && field[p-1,p- 1] == 'X' && field[p, p-2] == 'X') { Console.WriteLine("Победа 1 игрока"); return true; }
             }
             return false;
 
@@ -145,12 +141,12 @@ namespace Hello_World
             Console.WriteLine("укажите ряд:");
             int move = int.Parse(Console.ReadLine()) - 1;
 
-            field[move, move2] = 'X';
-            for (int t = 0; t < 4; t++)
+            field[move-1, move2-1] = 'X';
+            for (int t = 0; t < a-1; t++)
             {
                 Console.Write(" |");
 
-                for (int y = 0; y < 4; y++)
+                for (int y = 0; y < b-1; y++)
                 {
                     Console.Write(field[t, y] + "|");
                 }
